@@ -7,7 +7,7 @@ export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const navItems = [
-        { label: "Home", href: "/", isIcon: true },
+        { label: "Home", href: "/" },
         { label: "Solutions", href: "/solutions" },
         { label: "Services", href: "/services" },
         { label: "About", href: "/about" },
@@ -59,13 +59,7 @@ export default function Navbar() {
                             href={item.href}
                             className="text-base font-medium text-gray-700 transition-colors hover:text-[#1e3a5f]"
                         >
-                            {item.isIcon ? (
-                                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                                </svg>
-                            ) : (
-                                item.label
-                            )}
+                            {item.label}
                         </Link>
                     ))}
                 </div>
@@ -99,37 +93,39 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Menu */}
-            {mobileMenuOpen && (
-                <div className="border-t border-gray-100 bg-white px-6 py-4 md:hidden">
-                    <div className="flex flex-col gap-4">
-                        {navItems.map((item) => (
+            {
+                mobileMenuOpen && (
+                    <div className="border-t border-gray-100 bg-white px-6 py-4 md:hidden">
+                        <div className="flex flex-col gap-4">
+                            {navItems.map((item) => (
+                                <Link
+                                    key={item.label}
+                                    href={item.href}
+                                    className="flex items-center justify-between py-2 text-base font-medium text-gray-700"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
+                                    {item.label}
+                                    <svg
+                                        className="h-4 w-4 text-gray-400"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </Link>
+                            ))}
                             <Link
-                                key={item.label}
-                                href={item.href}
-                                className="flex items-center justify-between py-2 text-base font-medium text-gray-700"
+                                href="/contact"
+                                className="mt-2 rounded bg-[#dc2626] px-6 py-3 text-center text-base font-semibold text-white"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
-                                {item.label}
-                                <svg
-                                    className="h-4 w-4 text-gray-400"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
+                                Contact Us
                             </Link>
-                        ))}
-                        <Link
-                            href="/contact"
-                            className="mt-2 rounded bg-[#dc2626] px-6 py-3 text-center text-base font-semibold text-white"
-                            onClick={() => setMobileMenuOpen(false)}
-                        >
-                            Contact Us
-                        </Link>
+                        </div>
                     </div>
-                </div>
-            )}
-        </nav>
+                )
+            }
+        </nav >
     );
 }

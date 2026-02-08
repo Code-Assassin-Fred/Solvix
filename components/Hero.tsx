@@ -12,11 +12,9 @@ export default function Hero() {
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
 
-        // Circuit board colors
         const bgColor = "#0a1628";
         const circuitColor = "#1a3a5c";
 
-        // Circuit paths
         interface CircuitPath {
             points: { x: number; y: number }[];
             currentPos: number;
@@ -25,7 +23,6 @@ export default function Hero() {
             glowIntensity: number;
         }
 
-        // Generate circuit grid
         const gridSize = 60;
         let nodes: { x: number; y: number; size: number }[] = [];
         let paths: CircuitPath[] = [];
@@ -247,10 +244,9 @@ export default function Hero() {
             animationId = requestAnimationFrame(animate);
         };
 
-        // Set size and start animation
         const handleResize = () => {
             canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight - 80;
+            canvas.height = window.innerHeight - 96;
             generateCircuit();
         };
 
@@ -265,7 +261,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <div className="relative w-full bg-[#0a1628]" style={{ height: "calc(100vh - 80px)" }}>
+        <div className="relative w-full bg-[#0a1628]" style={{ height: "calc(100vh - 96px)" }}>
             <canvas
                 ref={canvasRef}
                 className="absolute top-0 left-0 block"
