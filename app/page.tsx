@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import AssetBanner from "@/components/AssetBanner";
 import CoreVisual from "@/components/CoreVisual";
 import ServicesSection from "@/components/ServicesSection";
-import IndustryApps from "@/components/IndustryApps";
 import ServicesDetail from "@/components/ServicesDetail";
 import DashboardShowcase from "@/components/DashboardShowcase";
 import Resources from "@/components/Resources";
@@ -20,10 +19,9 @@ export default function Home() {
       <AssetBanner />
       <CoreVisual />
       <ServicesSection />
-      <IndustryApps />
+      <Resources />
       <ServicesDetail />
       <DashboardShowcase />
-      <Resources />
       <FutureRoadmap />
       <CTAContact />
       <Footer />

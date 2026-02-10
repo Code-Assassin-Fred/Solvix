@@ -1,6 +1,25 @@
 "use client";
 
-import { ThumbsUp, Users } from "lucide-react";
+import { ThumbsUp, Users, ArrowRightCircle } from "lucide-react";
+
+const solutions = [
+    "Artificial Intelligence (AI) Solutions",
+    "Machine Learning (ML) Models",
+    "AI Agents & Digital Assistants",
+    "Automation & Intelligent Workflows",
+    "Industrial & Process Automation",
+    "AI Integration into Existing Systems",
+    "Intelligent Chatbots & Virtual Assistants",
+    "Data Science & Analytics",
+    "Business Intelligence & Visualization",
+    "Automated Data Entry & Reporting Systems",
+    "Workflow Orchestration & Optimization",
+    "Digital Transformation Solutions",
+    "Cloud Systems & Integration",
+    "Software & Systems Development",
+    "Platform & System Architecture Design",
+    "Full-Stack Application Development"
+];
 
 const services = [
     {
@@ -73,6 +92,33 @@ export default function ServicesSection() {
                             </div>
                         </div>
                     ))}
+                </div>
+
+                {/* Solutions List Section */}
+                <div className="mt-24 pt-16 border-t border-slate-900/10">
+                    <div className="flex flex-col lg:flex-row gap-12 items-start">
+                        <div className="lg:w-1/2">
+                            <h3 className="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                                <span className="text-[#e15b31]">Solvix</span>
+                                <span className="text-slate-500 font-medium">Product Line</span>
+                            </h3>
+                            <p className="text-xl text-slate-600 mb-8 font-medium">
+                                We offer a comprehensive product line that includes:
+                            </p>
+                        </div>
+                        <div className="lg:w-1/2 w-full">
+                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
+                                {solutions.map((solution, idx) => (
+                                    <li key={idx} className="flex items-start gap-3 group">
+                                        <ArrowRightCircle className="w-6 h-6 text-[#e15b31] shrink-0 transition-transform group-hover:translate-x-1" />
+                                        <span className="text-slate-700 font-medium group-hover:text-slate-900 transition-colors">
+                                            {solution}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
