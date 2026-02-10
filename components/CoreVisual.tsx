@@ -13,10 +13,10 @@ export default function CoreVisual() {
             </div>
 
             <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20 items-center">
                     {/* Left: Visual Side (Sized Down) */}
-                    <div className="relative flex justify-center lg:justify-start">
-                        <div className="relative w-full max-w-sm">
+                    <div className="relative flex justify-center lg:justify-start lg:col-span-2">
+                        <div className="relative w-full max-w-md">
                             {/* Main Dark Box */}
                             <div className="relative aspect-square w-full overflow-hidden rounded-[2rem] shadow-2xl flex items-center justify-center group">
                                 {/* Animated Background Image */}
@@ -36,18 +36,17 @@ export default function CoreVisual() {
                                     Engineering Excellence
                                 </span>
                                 <p className="mt-2 text-xs font-medium leading-relaxed">
-                                    Digital engineering that speaks your language—innovative and built to solve real problems.
+                                    Digital engineering that speaks your language, innovative and built to solve real problems.
                                 </p>
                             </div>
                         </div>
                     </div>
 
                     {/* Right: About Text Side (Paragraph Only) */}
-                    <div className="lg:pl-8">
-                        <p className="text-xl md:text-2xl text-slate-600 leading-relaxed max-w-2xl font-medium">
-                            We aim to empower modern businesses worldwide to innovate, transform, and thrive.
-                            Our best-in-class solutions and expert guidance enable you to embrace innovative strategies,
-                            challenge the status quo, and win in the competitive market.
+                    <div className="lg:pl-0 lg:col-span-3">
+                        <span className="text-[#e15b31] font-bold uppercase tracking-widest text-sm mb-4 block">About</span>
+                        <p className="text-xl md:text-2xl text-slate-600 leading-relaxed max-w-3xl font-medium">
+                            We empower modern businesses and organizations to innovate, transform, and scale through intelligent, data-driven technology solutions. Solvix delivers advanced digital systems, AI agents, and automation frameworks that provide a significant productivity boost via AI, optimizing operations and unlocking new value. Our expert guidance and best-in-class solutions help institutions move beyond conventional models, adopt forward-thinking strategies, and compete with confidence in rapidly evolving markets.
                         </p>
                     </div>
                 </div>

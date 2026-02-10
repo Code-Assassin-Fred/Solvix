@@ -45,6 +45,11 @@ function LiveIndicator() {
 
 export default function DashboardShowcase() {
     const [stats, setStats] = useState({ agents: 1248, sync: 99.8, load: 42.5 });
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -178,7 +183,11 @@ export default function DashboardShowcase() {
                                                     <motion.div
                                                         key={i}
                                                         initial={{ height: "10%" }}
-                                                        animate={{ height: [`${20 + Math.random() * 60}%`, `${30 + Math.random() * 50}%`] }}
+                                                        animate={{
+                                                            height: mounted
+                                                                ? [`${20 + Math.random() * 60}%`, `${30 + Math.random() * 50}%`]
+                                                                : "40%"
+                                                        }}
                                                         transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse', delay: i * 0.05 }}
                                                         className="flex-1 bg-gradient-to-t from-sky-400 to-indigo-500 rounded-t-sm min-w-[4px]"
                                                     />
@@ -278,7 +287,11 @@ export default function DashboardShowcase() {
                                             <div className="text-2xl font-black">99.8%</div>
                                             <div className="h-8 w-16 flex items-end space-x-0.5">
                                                 {[...Array(6)].map((_, k) => (
-                                                    <div key={k} className="flex-1 bg-sky-500/40 rounded-t-[1px]" style={{ height: `${40 + Math.random() * 60}%` }} />
+                                                    <div
+                                                        key={k}
+                                                        className="flex-1 bg-sky-500/40 rounded-t-[1px]"
+                                                        style={{ height: mounted ? `${40 + Math.random() * 60}%` : '60%' }}
+                                                    />
                                                 ))}
                                             </div>
                                         </div>
