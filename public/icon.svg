@@ -1,0 +1,17 @@
+<svg
+  viewBox="0 0 64 64"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Black Square Background with slightly rounded corners for a premium look -->
+  <rect width="64" height="64" rx="12" fill="black" />
+  
+  <!-- Inverted S Logo - Ultra Thick and Bold White -->
+  <path
+    d="M18 24c0-6 5.5-10 14-10s14 4 14 10c0 5-4.5 8.5-14 11-9.5 2.5-14 6-14 11 0 6 5.5 10 14 10s14-4 14-10"
+    stroke="white"
+    strokeWidth="12"
+    strokeLinecap="round"
+    fill="none"
+  />
+</svg>
