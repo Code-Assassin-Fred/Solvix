@@ -89,22 +89,20 @@ export default function CTAContact() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-base font-bold text-[#0f2a4a]">Email *</label>
+                                    <label className="text-base font-bold text-[#0f2a4a]">Email (Optional)</label>
                                     <input
                                         type="email"
                                         name="email"
-                                        required
                                         placeholder="Enter email address"
                                         className="w-full px-4 py-3 bg-white border border-slate-200 rounded-md text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-sky-500 transition-all shadow-sm"
                                     />
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-base font-bold text-[#0f2a4a]">Work Phone Number *</label>
+                                    <label className="text-base font-bold text-[#0f2a4a]">Work Phone Number (Optional)</label>
                                     <input
                                         type="tel"
                                         name="phone"
-                                        required
                                         placeholder="Enter phone number"
                                         className="w-full px-4 py-3 bg-white border border-slate-200 rounded-md text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-sky-500 transition-all shadow-sm"
                                     />
