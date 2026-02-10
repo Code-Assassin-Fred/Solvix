@@ -7,14 +7,14 @@ export default function Resources() {
     return (
         <section id="resources" className="py-16 bg-white">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="flex flex-col lg:flex-row bg-[#0a1628] rounded-3xl overflow-hidden shadow-2xl min-h-[500px]">
+                <div className="flex flex-col lg:flex-row bg-[#0a1628] rounded-3xl overflow-hidden shadow-2xl lg:min-h-[500px]">
                     {/* Left: Content Side */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="flex-1 p-12 lg:p-20 flex flex-col justify-center relative z-20"
+                        className="flex-1 p-8 lg:p-20 flex flex-col justify-center relative z-20"
                     >
                         <h2 className="text-xl md:text-3xl font-bold text-white leading-tight">
                             Unleash Your Growth Potential in your industry with our advanced digital systems.
@@ -39,7 +39,7 @@ export default function Resources() {
                         {/* Background Depth */}
                         <div className="absolute inset-0 bg-radial-gradient from-sky-500/5 via-transparent to-transparent pointer-events-none" />
 
-                        <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-8">
+                        <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-4 lg:p-8">
                             <AIVisualization />
                         </div>
 

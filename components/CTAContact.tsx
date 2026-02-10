@@ -182,7 +182,7 @@ export default function CTAContact() {
                                 </motion.div>
                             </div>
 
-                            <motion.div variants={itemVariants} className="flex items-center space-x-6">
+                            <motion.div variants={itemVariants} className="flex items-center space-x-6 justify-end lg:justify-start">
                                 <button
                                     type="submit"
                                     disabled={result === "Sending...."}

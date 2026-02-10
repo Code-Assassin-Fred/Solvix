@@ -32,7 +32,7 @@ export default function AIVisualization() {
     if (!mounted) return null;
 
     return (
-        <div className="relative flex justify-center items-center w-full h-full min-h-[400px] scale-[0.8] lg:scale-100 transition-transform duration-500">
+        <div className="relative flex justify-center items-center w-full h-full min-h-[320px] lg:min-h-[400px] scale-[0.8] lg:scale-100 transition-transform duration-500">
             {/* Central Hub circle */}
             <div className="relative z-30 w-32 h-32 rounded-full bg-white shadow-[0_10px_40px_rgba(0,120,212,0.15)] flex flex-col items-center justify-center p-4 text-center border-2 border-slate-50">
                 <span className="text-xl font-extrabold text-[#0f2a4a] leading-none mb-1">Solvix</span>

@@ -123,11 +123,11 @@ export default function ServicesSection() {
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="lg:w-1/2 relative min-h-[450px] rounded-3xl overflow-hidden group shadow-xl border border-white/20"
+                            className="w-full lg:w-1/2 relative min-h-[300px] lg:min-h-[450px] rounded-3xl overflow-hidden group shadow-xl border border-white/20"
                         >
                             {/* Background Image Optimized */}
                             <Image
-                                src="/solutions.png"
+                                src="/technology solutions.jpg"
                                 alt="Solvix Solutions"
                                 fill
                                 className="object-cover transition-transform duration-1000 group-hover:scale-110 contrast-[1.05] brightness-[1.1]"

@@ -107,7 +107,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="mt-20 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div className="mt-20 pt-8 border-t border-slate-100 flex justify-between items-center gap-4">
                     <p className="text-sm text-slate-600 font-bold">© {new Date().getFullYear()} Solvix. All rights reserved.</p>
                     <div className="flex space-x-8 text-sm text-slate-600 font-bold">
                         <button
