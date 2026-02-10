@@ -56,7 +56,7 @@ export default function AssetBanner() {
                 className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 flex flex-col items-center"
             >
                 <p className="text-lg md:text-xl text-white font-medium max-w-3xl">
-                    The Technology Suite Just Got Even Better. A Complete Range of AI, Software, and Automation Solutions for Smarter Business Control.
+                    The Technology Suite Just Got Even Better. A Complete Range of AI, Software, and Automation Solutions for Smarter Business and Organizational Control.
                 </p>
             </motion.div>
         </section>

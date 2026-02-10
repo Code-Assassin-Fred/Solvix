@@ -58,11 +58,11 @@ export default function ServicesSection() {
                         viewport={{ once: true }}
                         className="text-center mb-16"
                     >
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/5 border border-slate-900/10 mb-6">
+                        {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/5 border border-slate-900/10 mb-6">
                             <span className="text-xs font-bold tracking-widest uppercase text-slate-900 flex items-center gap-1">
                                 Our Services
                             </span>
-                        </div>
+                        </div> */}
                         <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 max-w-4xl mx-auto leading-[1.1]">
                             Driving the cutting-edge and robust product line in the industry
                         </h2>
