@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function CoreVisual() {
     return (
-        <section className="relative pt-16 pb-24 bg-white overflow-hidden">
+        <section id="about" className="relative pt-16 pb-24 bg-white overflow-hidden">
             {/* Background Wavy Visuals */}
             <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
                 <svg className="w-full h-full" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -18,8 +18,7 @@ const solutions = [
     "Digital Transformation Solutions",
     "Cloud Systems & Integration",
     "Software & Systems Development",
-    "Platform & System Architecture Design",
-    "Full-Stack Application Development"
+    "Platform & System Architecture Design"
 ];
 
 const services = [
@@ -47,7 +46,7 @@ const services = [
 
 export default function ServicesSection() {
     return (
-        <section className="bg-[#f4f9f4] py-16 overflow-hidden">
+        <section id="solutions" className="bg-[#f4f9f4] py-16 overflow-hidden">
             <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-16">
@@ -71,8 +70,8 @@ export default function ServicesSection() {
                             </div>
 
                             {/* Titles */}
-                            <h3 className="text-2xl font-bold text-slate-900 mb-1">{service.title}</h3>
-                            <p className="text-slate-500 font-medium italic mb-6">{service.subtitle}</p>
+                            <h3 className="text-3xl font-bold text-slate-900 mb-2">{service.title}</h3>
+                            <p className="text-lg text-slate-500 font-medium italic mb-6">{service.subtitle}</p>
 
                             {/* Image Container with Enhanced Presentation */}
                             <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden mb-8 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-slate-100 relative group">
@@ -91,7 +90,7 @@ export default function ServicesSection() {
                             {/* Descriptions */}
                             <div className="space-y-4">
                                 {service.description.map((para, i) => (
-                                    <p key={i} className="text-slate-600 leading-relaxed text-[0.95rem]">
+                                    <p key={i} className="text-slate-600 leading-relaxed text-[1.1rem]">
                                         {para}
                                     </p>
                                 ))}

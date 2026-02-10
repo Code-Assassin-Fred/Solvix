@@ -1,17 +1,63 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState("home");
 
     const navItems = [
-        { label: "Home", href: "/" },
-        { label: "Solutions", href: "/solutions" },
-        { label: "Services", href: "/services" },
-        { label: "About", href: "/about" },
+        { label: "Home", href: "#home" },
+        { label: "About", href: "#about" },
+        { label: "Services", href: "#services" },
+        { label: "Solutions", href: "#solutions" },
     ];
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = ["home", "about", "services", "solutions", "contact"];
+            const scrollPosition = window.scrollY + 120; // Offset for better detection
+
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (element) {
+                    const top = element.offsetTop;
+                    const height = element.offsetHeight;
+
+                    if (scrollPosition >= top && scrollPosition < top + height) {
+                        setActiveSection(section);
+                        // Update URL hash without causing a page jump
+                        if (window.history.replaceState) {
+                            window.history.replaceState(null, "", `#${section}`);
+                        }
+                        break;
+                    }
+                }
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        // Initial call to set correct section
+        handleScroll();
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        if (href.startsWith("#")) {
+            e.preventDefault();
+            const id = href.substring(1);
+            const element = document.getElementById(id);
+            if (element) {
+                const offsetTop = element.offsetTop - 80; // Adjusted for navbar height
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: "smooth",
+                });
+            }
+            setMobileMenuOpen(false);
+        }
+    };
 
     return (
         <nav className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white shadow-sm">
@@ -19,7 +65,6 @@ export default function Navbar() {
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-3">
                     <div className="flex h-14 w-14 items-center justify-center">
-                        {/* Stylized S Logo */}
                         <svg
                             viewBox="0 0 56 56"
                             className="h-14 w-14"
@@ -54,24 +99,29 @@ export default function Navbar() {
                 {/* Desktop Navigation */}
                 <div className="hidden items-center gap-10 md:flex">
                     {navItems.map((item) => (
-                        <Link
+                        <a
                             key={item.label}
                             href={item.href}
-                            className="text-base font-medium text-gray-700 transition-colors hover:text-[#1e3a5f]"
+                            onClick={(e) => handleNavClick(e, item.href)}
+                            className={`text-base font-medium transition-colors hover:text-[#1e3a5f] ${activeSection === item.href.substring(1)
+                                    ? "text-[#1e3a5f] font-bold underline underline-offset-8"
+                                    : "text-gray-700"
+                                }`}
                         >
                             {item.label}
-                        </Link>
+                        </a>
                     ))}
                 </div>
 
                 {/* Right Side Actions */}
                 <div className="hidden items-center gap-4 md:flex">
-                    <Link
-                        href="/contact"
+                    <a
+                        href="#contact"
+                        onClick={(e) => handleNavClick(e, "#contact")}
                         className="rounded bg-[#dc2626] px-6 py-2.5 text-base font-semibold text-white transition-all hover:bg-[#b91c1c] hover:shadow-lg"
                     >
                         Contact Us
-                    </Link>
+                    </a>
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -98,11 +148,14 @@ export default function Navbar() {
                     <div className="border-t border-gray-100 bg-white px-6 py-4 md:hidden">
                         <div className="flex flex-col gap-4">
                             {navItems.map((item) => (
-                                <Link
+                                <a
                                     key={item.label}
                                     href={item.href}
-                                    className="flex items-center justify-between py-2 text-base font-medium text-gray-700"
-                                    onClick={() => setMobileMenuOpen(false)}
+                                    onClick={(e) => handleNavClick(e, item.href)}
+                                    className={`flex items-center justify-between py-2 text-base font-medium ${activeSection === item.href.substring(1)
+                                            ? "text-[#1e3a5f] font-bold"
+                                            : "text-gray-700"
+                                        }`}
                                 >
                                     {item.label}
                                     <svg
@@ -113,15 +166,15 @@ export default function Navbar() {
                                     >
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                     </svg>
-                                </Link>
+                                </a>
                             ))}
-                            <Link
-                                href="/contact"
+                            <a
+                                href="#contact"
+                                onClick={(e) => handleNavClick(e, "#contact")}
                                 className="mt-2 rounded bg-[#dc2626] px-6 py-3 text-center text-base font-semibold text-white"
-                                onClick={() => setMobileMenuOpen(false)}
                             >
                                 Contact Us
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 )

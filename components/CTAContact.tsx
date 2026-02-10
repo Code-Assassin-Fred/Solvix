@@ -5,10 +5,11 @@ import { useState } from 'react';
 export default function CTAContact() {
     const [result, setResult] = useState("");
 
-    const onSubmit = async (event) => {
+    const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        const form = event.currentTarget;
         setResult("Sending....");
-        const formData = new FormData(event.target);
+        const formData = new FormData(form);
         formData.append("access_key", "23293999-fc0f-49dc-af2c-ce463c73f4c9");
 
         const response = await fetch("https://api.web3forms.com/submit", {
@@ -19,7 +20,10 @@ export default function CTAContact() {
         const data = await response.json();
         if (data.success) {
             setResult("Submitted");
-            event.target.reset();
+            form.reset();
+            setTimeout(() => {
+                setResult("");
+            }, 7000);
         } else {
             setResult("Error! Please try again later.");
         }
@@ -89,10 +93,11 @@ export default function CTAContact() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-base font-bold text-[#0f2a4a]">Email (Optional)</label>
+                                    <label className="text-base font-bold text-[#0f2a4a]">Email *</label>
                                     <input
                                         type="email"
                                         name="email"
+                                        required
                                         placeholder="Enter email address"
                                         className="w-full px-4 py-3 bg-white border border-slate-200 rounded-md text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-sky-500 transition-all shadow-sm"
                                     />
@@ -109,11 +114,10 @@ export default function CTAContact() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-base font-bold text-[#0f2a4a]">Organization *</label>
+                                    <label className="text-base font-bold text-[#0f2a4a]">Organization (Optional)</label>
                                     <input
                                         type="text"
                                         name="organization"
-                                        required
                                         placeholder="Enter organization name"
                                         className="w-full px-4 py-3 bg-white border border-slate-200 rounded-md text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-sky-500 transition-all shadow-sm"
                                     />

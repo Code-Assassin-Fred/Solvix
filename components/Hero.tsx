@@ -18,8 +18,7 @@ const services = [
     "Digital Transformation Solutions",
     "Cloud Systems & Integration",
     "Software & Systems Development",
-    "Platform & System Architecture Design",
-    "Full-Stack Application Development"
+    "Platform & System Architecture Design"
 ];
 
 export default function Hero() {
@@ -48,7 +47,7 @@ export default function Hero() {
     }, [subIndex, index, reverse]);
 
     return (
-        <div className="relative w-full bg-[#0a1628] overflow-hidden" style={{ height: "calc(100vh - 96px)" }}>
+        <div id="home" className="relative w-full bg-[#0a1628] overflow-hidden" style={{ height: "calc(100vh - 96px)" }}>
             {/* Background Image with Cinematic Animation */}
             <div className="absolute inset-0 w-full h-full overflow-hidden animate-ken-burns will-change-transform">
                 <Image
