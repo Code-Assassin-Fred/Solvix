@@ -1,7 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import AssetBanner from "@/components/AssetBanner";
-import About from "@/components/About";
+import CoreVisual from "@/components/CoreVisual";
+import ServicesSection from "@/components/ServicesSection";
 import IndustryApps from "@/components/IndustryApps";
 import ServicesDetail from "@/components/ServicesDetail";
 import DashboardShowcase from "@/components/DashboardShowcase";
@@ -17,8 +18,8 @@ export default function Home() {
       <Hero />
       <div className="h-20 bg-white w-full" />
       <AssetBanner />
-      <div className="h-20 bg-white w-full" />
-      <About />
+      <CoreVisual />
+      <ServicesSection />
       <IndustryApps />
       <ServicesDetail />
       <DashboardShowcase />
