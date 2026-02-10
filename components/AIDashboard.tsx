@@ -30,7 +30,7 @@ export default function AIDashboard() {
             {/* Top Bar */}
             <div className="flex justify-between items-center mb-8 relative z-10">
                 <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#1e293b] border border-sky-500/30 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-[#1e293b] border border-sky-500/50 flex items-center justify-center">
                         <div className="w-5 h-5 bg-sky-400 rounded-sm" />
                     </div>
                     <div>
@@ -38,10 +38,10 @@ export default function AIDashboard() {
                         <p className="text-[9px] text-sky-400 font-bold uppercase tracking-widest leading-none mt-1">Status: Operational</p>
                     </div>
                 </div>
-                <div className="px-3 py-1 rounded-full bg-[#064e3b] border border-emerald-500/30 flex items-center space-x-2">
+                {/* <div className="px-3 py-1 rounded-full bg-[#064e3b] border border-emerald-500/50 flex items-center space-x-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                     <span className="text-[9px] font-black text-emerald-500 uppercase">Secure Link</span>
-                </div>
+                </div> */}
             </div>
 
             {/* Main Content Overlay */}
