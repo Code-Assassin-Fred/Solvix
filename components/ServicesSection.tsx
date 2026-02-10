@@ -46,61 +46,64 @@ const services = [
 
 export default function ServicesSection() {
     return (
-        <section id="solutions" className="bg-[#f4f9f4] py-16 overflow-hidden">
+        <section className="bg-[#f4f9f4] py-16 overflow-hidden">
             <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
-                {/* Header */}
-                <div className="text-center mb-16">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/5 border border-slate-900/10 mb-6">
-                        <span className="text-xs font-bold tracking-widest uppercase text-slate-900 flex items-center gap-1">
-                            Our Services
-                        </span>
-                    </div>
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 max-w-4xl mx-auto leading-[1.1]">
-                        Driving the cutting-edge and robust product line in the industry
-                    </h2>
-                </div>
-
-                {/* Services Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    {services.map((service, index) => (
-                        <div key={index} className="bg-white rounded-3xl p-10 md:p-12 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-start text-left">
-                            {/* Icon Circle */}
-                            <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center mb-6">
-                                {service.icon}
-                            </div>
-
-                            {/* Titles */}
-                            <h3 className="text-3xl font-bold text-slate-900 mb-2">{service.title}</h3>
-                            <p className="text-lg text-slate-500 font-medium italic mb-6">{service.subtitle}</p>
-
-                            {/* Image Container with Enhanced Presentation */}
-                            <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden mb-8 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-slate-100 relative group">
-                                <Image
-                                    src={service.image}
-                                    alt={service.title}
-                                    fill
-                                    className="object-cover transition-all duration-700 group-hover:scale-110 contrast-[1.05] saturate-[1.1] brightness-[1.02]"
-                                    quality={100}
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                />
-                                {/* Subtle Inner Glow/Overlay for depth */}
-                                <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl pointer-events-none" />
-                            </div>
-
-                            {/* Descriptions */}
-                            <div className="space-y-4">
-                                {service.description.map((para, i) => (
-                                    <p key={i} className="text-slate-600 leading-relaxed text-[1.1rem]">
-                                        {para}
-                                    </p>
-                                ))}
-                            </div>
+                {/* Services Section */}
+                <div id="services">
+                    {/* Header */}
+                    <div className="text-center mb-16">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/5 border border-slate-900/10 mb-6">
+                            <span className="text-xs font-bold tracking-widest uppercase text-slate-900 flex items-center gap-1">
+                                Our Services
+                            </span>
                         </div>
-                    ))}
+                        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 max-w-4xl mx-auto leading-[1.1]">
+                            Driving the cutting-edge and robust product line in the industry
+                        </h2>
+                    </div>
+
+                    {/* Services Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        {services.map((service, index) => (
+                            <div key={index} className="bg-white rounded-3xl p-10 md:p-12 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-start text-left">
+                                {/* Icon Circle */}
+                                <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center mb-6">
+                                    {service.icon}
+                                </div>
+
+                                {/* Titles */}
+                                <h3 className="text-3xl font-bold text-slate-900 mb-2">{service.title}</h3>
+                                <p className="text-lg text-slate-500 font-medium italic mb-6">{service.subtitle}</p>
+
+                                {/* Image Container with Enhanced Presentation */}
+                                <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden mb-8 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-slate-100 relative group">
+                                    <Image
+                                        src={service.image}
+                                        alt={service.title}
+                                        fill
+                                        className="object-cover transition-all duration-700 group-hover:scale-110 contrast-[1.05] saturate-[1.1] brightness-[1.02]"
+                                        quality={100}
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                    />
+                                    {/* Subtle Inner Glow/Overlay for depth */}
+                                    <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl pointer-events-none" />
+                                </div>
+
+                                {/* Descriptions */}
+                                <div className="space-y-4">
+                                    {service.description.map((para, i) => (
+                                        <p key={i} className="text-slate-600 leading-relaxed text-[1.1rem]">
+                                            {para}
+                                        </p>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Solutions List Section */}
-                <div className="mt-24 pt-16 border-t border-slate-900/10">
+                <div id="solutions" className="mt-24 pt-16 border-t border-slate-900/10">
                     <div className="flex flex-col lg:flex-row gap-12 items-start">
                         <div className="lg:w-1/2 relative min-h-[450px] rounded-3xl overflow-hidden group shadow-xl border border-white/20">
                             {/* Background Image Optimized */}

@@ -16,7 +16,7 @@ export default function Navbar() {
 
     useEffect(() => {
         const handleScroll = () => {
-            const sections = ["home", "about", "services", "solutions", "contact"];
+            const sections = ["home", "about", "services", "solutions", "resources", "contact"];
             const scrollPosition = window.scrollY + 120; // Offset for better detection
 
             for (const section of sections) {
@@ -104,8 +104,8 @@ export default function Navbar() {
                             href={item.href}
                             onClick={(e) => handleNavClick(e, item.href)}
                             className={`text-base font-medium transition-colors hover:text-[#1e3a5f] ${activeSection === item.href.substring(1)
-                                    ? "text-[#1e3a5f] font-bold underline underline-offset-8"
-                                    : "text-gray-700"
+                                ? "text-[#1e3a5f] font-bold underline underline-offset-8"
+                                : "text-gray-700"
                                 }`}
                         >
                             {item.label}
@@ -153,8 +153,8 @@ export default function Navbar() {
                                     href={item.href}
                                     onClick={(e) => handleNavClick(e, item.href)}
                                     className={`flex items-center justify-between py-2 text-base font-medium ${activeSection === item.href.substring(1)
-                                            ? "text-[#1e3a5f] font-bold"
-                                            : "text-gray-700"
+                                        ? "text-[#1e3a5f] font-bold"
+                                        : "text-gray-700"
                                         }`}
                                 >
                                     {item.label}
