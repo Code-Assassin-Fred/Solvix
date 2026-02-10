@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import AssetBanner from "@/components/AssetBanner";
 import About from "@/components/About";
 import IndustryApps from "@/components/IndustryApps";
 import ServicesDetail from "@/components/ServicesDetail";
@@ -14,6 +15,9 @@ export default function Home() {
     <main className="min-h-screen bg-slate-50">
       <Navbar />
       <Hero />
+      <div className="h-20 bg-white w-full" />
+      <AssetBanner />
+      <div className="h-20 bg-white w-full" />
       <About />
       <IndustryApps />
       <ServicesDetail />

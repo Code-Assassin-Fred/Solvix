@@ -15,7 +15,7 @@ export default function FutureRoadmap() {
                             Coming 2026
                         </div>
                         <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-[#0a1628] leading-tight">
-                            AI for IT <br />Asset Manager
+                            Solvix AI <br />Enterprise Platform
                         </h2>
                         <p className="mt-8 text-xl text-slate-600 leading-relaxed max-w-xl">
                             Smarter insights for enterprise IT operations. Measurable gains across your entire technology stack through better visibility, smarter workflows, and integrated AI support.
