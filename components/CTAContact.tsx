@@ -1,6 +1,30 @@
 "use client";
 
+import { useState } from 'react';
+
 export default function CTAContact() {
+    const [result, setResult] = useState("");
+
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        setResult("Sending....");
+        const formData = new FormData(event.target);
+        formData.append("access_key", "23293999-fc0f-49dc-af2c-ce463c73f4c9");
+
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            setResult("Submitted");
+            event.target.reset();
+        } else {
+            setResult("Error! Please try again later.");
+        }
+    };
+
     return (
         <section id="contact" className="relative py-24 overflow-hidden bg-white">
             {/* Split Background Layer */}
@@ -23,10 +47,10 @@ export default function CTAContact() {
 
                         <div>
                             <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-                                Connecting with <br />Solvix Software
+                                Let's build <br />something great.
                             </h2>
                             <p className="mt-6 text-slate-300 text-lg">
-                                Discover how our dedicated teams can support you by exploring the options below.
+                                Ready to transform your operations? Our team is here to help you navigate the next step in your digital journey.
                             </p>
                         </div>
 
@@ -40,8 +64,7 @@ export default function CTAContact() {
                             </div>
                             <div>
                                 <h4 className="text-xl font-bold mb-2">Direct Contact</h4>
-                                <p className="text-slate-400">hello@solvix.ai</p>
-                                <p className="text-slate-400">+254 700 000 000</p>
+                                <p className="text-slate-400">+254 768094564</p>
                             </div>
                         </div>
                     </div>
@@ -52,9 +75,7 @@ export default function CTAContact() {
                     <div className="max-w-2xl">
                         <h2 className="text-4xl font-bold text-[#0f2a4a] mb-8">Get In Touch</h2>
 
-                        <form action="https://api.web3forms.com/submit" method="POST" className="space-y-8">
-                            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
-
+                        <form onSubmit={onSubmit} className="space-y-8">
                             <div className="space-y-6">
                                 <div className="space-y-2">
                                     <label className="text-base font-bold text-[#0f2a4a]">Name *</label>
@@ -111,12 +132,27 @@ export default function CTAContact() {
                                 </div>
                             </div>
 
-                            <button
-                                type="submit"
-                                className="px-12 py-4 bg-[#FBDB6B] text-[#0a1628] font-extrabold rounded-full hover:bg-[#f3cc4a] transition-all active:scale-95 shadow-lg text-lg"
-                            >
-                                Submit
-                            </button>
+                            <div className="flex items-center space-x-6">
+                                <button
+                                    type="submit"
+                                    disabled={result === "Sending...."}
+                                    className="px-12 py-4 bg-[#FBDB6B] text-[#0a1628] font-extrabold rounded-full hover:bg-[#f3cc4a] transition-all active:scale-95 shadow-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    {result === "Sending...." ? "Submitting..." : "Submit"}
+                                </button>
+
+                                {result === "Submitted" && (
+                                    <span className="text-emerald-600 font-bold text-lg animate-in fade-in slide-in-from-left-4 duration-300">
+                                        Submitted
+                                    </span>
+                                )}
+
+                                {result.includes("Error") && (
+                                    <span className="text-rose-500 font-bold">
+                                        {result}
+                                    </span>
+                                )}
+                            </div>
                         </form>
                     </div>
                 </div>
