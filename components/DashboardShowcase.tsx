@@ -14,7 +14,7 @@ function ChartBar() {
 
 export default function DashboardShowcase() {
     return (
-        <section className="py-12 bg-slate-50 overflow-hidden">
+        <section className="pt-12 pb-32 bg-slate-50 overflow-hidden">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="text-center mb-8">
                     <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#0a1628]">
@@ -103,7 +103,7 @@ export default function DashboardShowcase() {
                     </div>
 
                     {/* Mobile Phone Mockup - Overlapping */}
-                    <div className="absolute -right-4 -bottom-12 md:-right-12 md:-bottom-20 z-20 w-[180px] md:w-[280px] animate-float group">
+                    <div className="absolute -right-4 -bottom-8 md:-right-12 md:-bottom-12 z-20 w-[180px] md:w-[280px] animate-float group">
                         {/* Phone Container/Shadow */}
                         <div className="relative h-[380px] md:h-[580px] bg-slate-900 rounded-[2.5rem] md:rounded-[3.5rem] p-3 md:p-4 shadow-2xl border-4 border-slate-700">
                             {/* Inner Bezel */}

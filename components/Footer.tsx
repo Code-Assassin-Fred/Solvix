@@ -11,6 +11,9 @@ export default function Footer() {
                         <p className="mt-4 text-slate-500 max-w-xs leading-relaxed">
                             Leading with cutting-edge software and AI solutions, building lasting trust through transparent, forward-thinking collaboration.
                         </p>
+                        <p className="mt-4 text-sm text-slate-400">
+                            AACC, Waiyaki Way, Westlands,<br />Nairobi, Kenya
+                        </p>
                     </div>
 
                     {/* Quick Links */}

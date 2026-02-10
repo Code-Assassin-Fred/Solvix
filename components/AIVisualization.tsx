@@ -59,8 +59,10 @@ const industries = [
 
 export default function AIVisualization() {
     const [dimensions, setDimensions] = useState({ radius: 180, innerRadius: 80 });
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
         const updateDimensions = () => {
             const width = window.innerWidth;
             if (width < 768) {
@@ -75,6 +77,8 @@ export default function AIVisualization() {
         window.addEventListener('resize', updateDimensions);
         return () => window.removeEventListener('resize', updateDimensions);
     }, []);
+
+    if (!mounted) return null;
 
     return (
         <div className="relative flex justify-center items-center w-full h-full min-h-[400px] scale-[0.8] lg:scale-100 transition-transform duration-500">
