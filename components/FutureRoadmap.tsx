@@ -1,6 +1,7 @@
 "use client";
 
 import AIDashboard from "./AIDashboard";
+import { motion } from "framer-motion";
 
 export default function FutureRoadmap() {
     return (
@@ -27,37 +28,63 @@ export default function FutureRoadmap() {
                     {/* Layered Wavy Ribbons */}
                     <g className="opacity-60">
                         {[...Array(6)].map((_, i) => (
-                            <path
+                            <motion.path
                                 key={i}
+                                initial={{ pathLength: 0, opacity: 0 }}
+                                whileInView={{ pathLength: 1, opacity: 0.1 + i * 0.05 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 2, delay: i * 0.1 }}
                                 d={`M-100 ${400 + i * 20}C200 ${300 + i * 30} 400 ${500 - i * 30} 720 ${400 + i * 10}C1040 ${300 + i * 30} 1240 ${500 - i * 30} 1540 ${400 + i * 20}`}
                                 stroke="url(#vibrant-blue)"
                                 strokeWidth="0.5"
                                 className={`animate-wave-${(i % 3) + 1}`}
-                                opacity={0.1 + i * 0.05}
                             />
                         ))}
                     </g>
 
-                    <path d="M-100 500C300 350 500 650 820 500C1140 350 1340 650 1640 500" stroke="#38bdf8" strokeWidth="2" strokeOpacity="0.3" className="animate-wave-2" />
-                    <path d="M-100 450C250 300 450 600 720 450C990 300 1190 600 1440 450" stroke="#22d3ee" strokeWidth="1" strokeOpacity="0.2" className="animate-wave-1" />
-                    <path d="M-100 550C350 400 550 700 880 550C1210 400 1410 700 1740 550" stroke="#0ea5e9" strokeWidth="1.5" strokeOpacity="0.1" className="animate-wave-3" />
+                    <motion.path
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 0.3 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 2.5 }}
+                        d="M-100 500C300 350 500 650 820 500C1140 350 1340 650 1640 500" stroke="#38bdf8" strokeWidth="2" className="animate-wave-2"
+                    />
+                    <motion.path
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 0.2 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 3 }}
+                        d="M-100 450C250 300 450 600 720 450C990 300 1190 600 1440 450" stroke="#22d3ee" strokeWidth="1" className="animate-wave-1"
+                    />
                 </svg>
             </div>
 
             <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     {/* Text Side */}
-                    <div className="order-2 lg:order-1">
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="order-2 lg:order-1"
+                    >
                         <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white leading-tight">
                             Whatever your need, <br />we can solve IT.
                         </h2>
                         <p className="mt-8 text-xl text-slate-300 leading-relaxed max-w-xl">
                             Contact us today to schedule a free expert consultation or to learn more about our services.
                         </p>
-                    </div>
+                    </motion.div>
 
                     {/* Visual Side */}
-                    <div className="order-1 lg:order-2 relative w-full overflow-visible">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="order-1 lg:order-2 relative w-full overflow-visible"
+                    >
                         <div className="relative aspect-[4/3] md:aspect-[16/10] w-full max-w-[600px] mx-auto group">
                             <AIDashboard />
 
@@ -65,7 +92,7 @@ export default function FutureRoadmap() {
                             <div className="absolute top-1/4 -left-8 w-32 h-32 bg-sky-400/20 blur-3xl -z-10 animate-pulse"></div>
                             <div className="absolute bottom-1/4 -right-8 w-48 h-48 bg-purple-400/10 blur-3xl -z-10 animate-pulse-slow"></div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 

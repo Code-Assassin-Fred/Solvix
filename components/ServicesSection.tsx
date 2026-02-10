@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ThumbsUp, Users, ArrowRightCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 const solutions = [
     "Artificial Intelligence (AI) Solutions",
@@ -38,7 +39,7 @@ const services = [
         subtitle: "Building Reliable Partnerships",
         image: "/Patnerships.jpg",
         description: [
-            "At Solvix, we believe that strong professional relationships are built on a foundation of proactive support, technical reliability, and transparent communication. Our team is committed to identifying and resolving any challenges that could impact your business performance—before they become problems.",
+            "We believe that strong professional relationships are built on a foundation of proactive support, technical reliability, and transparent communication. Our team is committed to identifying and resolving any challenges that could impact your business performance before they become problems.",
             "We don't just offer solutions; we offer the right solutions. By asking the right questions and applying deep industry insight, Solvix ensures that every recommendation is aligned with your goals and executed with precision. Our approach empowers clients to maximize their technology investments and achieve long term success."
         ]
     }
@@ -51,7 +52,12 @@ export default function ServicesSection() {
                 {/* Services Section */}
                 <div id="services">
                     {/* Header */}
-                    <div className="text-center mb-16">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-16"
+                    >
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/5 border border-slate-900/10 mb-6">
                             <span className="text-xs font-bold tracking-widest uppercase text-slate-900 flex items-center gap-1">
                                 Our Services
@@ -60,14 +66,22 @@ export default function ServicesSection() {
                         <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 max-w-4xl mx-auto leading-[1.1]">
                             Driving the cutting-edge and robust product line in the industry
                         </h2>
-                    </div>
+                    </motion.div>
 
                     {/* Services Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                         {services.map((service, index) => (
-                            <div key={index} className="bg-white rounded-3xl p-10 md:p-12 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-start text-left">
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.2, duration: 0.6 }}
+                                whileHover={{ y: -5 }}
+                                className="bg-white rounded-3xl p-10 md:p-12 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col items-start text-left group"
+                            >
                                 {/* Icon Circle */}
-                                <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center mb-6">
+                                <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center mb-6 group-hover:bg-[#e15b31] transition-colors duration-300">
                                     {service.icon}
                                 </div>
 
@@ -76,7 +90,7 @@ export default function ServicesSection() {
                                 <p className="text-lg text-slate-500 font-medium italic mb-6">{service.subtitle}</p>
 
                                 {/* Image Container with Enhanced Presentation */}
-                                <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden mb-8 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-slate-100 relative group">
+                                <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden mb-8 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-slate-100 relative">
                                     <Image
                                         src={service.image}
                                         alt={service.title}
@@ -97,7 +111,7 @@ export default function ServicesSection() {
                                         </p>
                                     ))}
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
@@ -105,7 +119,12 @@ export default function ServicesSection() {
                 {/* Solutions List Section */}
                 <div id="solutions" className="mt-24 pt-16 border-t border-slate-900/10">
                     <div className="flex flex-col lg:flex-row gap-12 items-start">
-                        <div className="lg:w-1/2 relative min-h-[450px] rounded-3xl overflow-hidden group shadow-xl border border-white/20">
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="lg:w-1/2 relative min-h-[450px] rounded-3xl overflow-hidden group shadow-xl border border-white/20"
+                        >
                             {/* Background Image Optimized */}
                             <Image
                                 src="/solutions.png"
@@ -130,16 +149,23 @@ export default function ServicesSection() {
                                     We offer a comprehensive product line that includes:
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
                         <div className="lg:w-1/2 w-full">
                             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
                                 {solutions.map((solution, idx) => (
-                                    <li key={idx} className="flex items-start gap-3 group">
+                                    <motion.li
+                                        key={idx}
+                                        initial={{ opacity: 0, x: 20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: idx * 0.05 }}
+                                        className="flex items-start gap-3 group"
+                                    >
                                         <ArrowRightCircle className="w-6 h-6 text-[#e15b31] shrink-0 transition-transform group-hover:translate-x-1" />
                                         <span className="text-slate-700 font-medium group-hover:text-slate-900 transition-colors">
                                             {solution}
                                         </span>
-                                    </li>
+                                    </motion.li>
                                 ))}
                             </ul>
                         </div>

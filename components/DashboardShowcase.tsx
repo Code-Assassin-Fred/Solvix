@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import {
     LayoutDashboard,
     Brain,
@@ -46,6 +46,15 @@ function LiveIndicator() {
 export default function DashboardShowcase() {
     const [stats, setStats] = useState({ agents: 1248, sync: 99.8, load: 42.5 });
     const [mounted, setMounted] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
+
+    const mobileY = useTransform(scrollYProgress, [0, 1], [50, -100]);
+    const mobileRotate = useTransform(scrollYProgress, [0, 1], [5, -5]);
 
     useEffect(() => {
         setMounted(true);
@@ -63,12 +72,13 @@ export default function DashboardShowcase() {
     }, []);
 
     return (
-        <section className="pt-12 pb-32 bg-slate-50 overflow-hidden">
+        <section ref={containerRef} className="pt-12 pb-32 bg-slate-50 overflow-hidden">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
                     className="text-center mb-16"
                 >
                     <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#0a1628]">
@@ -82,9 +92,10 @@ export default function DashboardShowcase() {
 
                     {/* Laptop Body */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, y: 40, rotateX: 20 }}
+                        whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                         viewport={{ once: true }}
+                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                         className="relative z-10 bg-slate-800 rounded-t-2xl p-4 md:p-5 shadow-2xl border-x-4 border-t-4 border-slate-700"
                     >
                         {/* Fake Dashboard UI */}
@@ -227,9 +238,10 @@ export default function DashboardShowcase() {
 
                     {/* Mobile Phone Mockup */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50, rotate: 5 }}
-                        whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
+                        style={{ y: mobileY, rotate: mobileRotate }}
                         className="absolute -right-4 -bottom-12 md:-right-12 md:-bottom-20 z-20 w-[180px] md:w-[280px]"
                     >
                         <div className="relative h-[380px] md:h-[580px] bg-slate-900 rounded-[2.5rem] md:rounded-[3.5rem] p-3 md:p-4 shadow-2xl border-4 border-slate-700">

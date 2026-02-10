@@ -8,9 +8,24 @@ export default function CoreVisual() {
             {/* Background Wavy Visuals */}
             <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
                 <svg className="w-full h-full" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M-100 600C200 500 400 700 700 600C1000 500 1200 600 1540 500" stroke="#0ea5e9" strokeWidth="4" strokeDasharray="8 8" />
-                    <path d="M-100 550C250 450 450 650 750 550C1050 450 1250 550 1590 450" stroke="#0ea5e9" strokeWidth="2" />
-                    <path d="M-100 650C150 550 350 750 650 650C950 550 1150 650 1490 550" stroke="#0ea5e9" strokeWidth="1" />
+                    <motion.path
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 1 }}
+                        transition={{ duration: 2, ease: "easeInOut" }}
+                        d="M-100 600C200 500 400 700 700 600C1000 500 1200 600 1540 500" stroke="#0ea5e9" strokeWidth="4" strokeDasharray="8 8"
+                    />
+                    <motion.path
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 1 }}
+                        transition={{ duration: 2.5, ease: "easeInOut", delay: 0.2 }}
+                        d="M-100 550C250 450 450 650 750 550C1050 450 1250 550 1590 450" stroke="#0ea5e9" strokeWidth="2"
+                    />
+                    <motion.path
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 1 }}
+                        transition={{ duration: 3, ease: "easeInOut", delay: 0.4 }}
+                        d="M-100 650C150 550 350 750 650 650C950 550 1150 650 1490 550" stroke="#0ea5e9" strokeWidth="1"
+                    />
                 </svg>
             </div>
 

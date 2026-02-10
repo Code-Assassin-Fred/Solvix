@@ -1,6 +1,7 @@
 "use client";
 
 import AIVisualization from "./AIVisualization";
+import { motion } from "framer-motion";
 
 export default function Resources() {
     return (
@@ -8,7 +9,13 @@ export default function Resources() {
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row bg-[#0a1628] rounded-3xl overflow-hidden shadow-2xl min-h-[500px]">
                     {/* Left: Content Side */}
-                    <div className="flex-1 p-12 lg:p-20 flex flex-col justify-center relative z-20">
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="flex-1 p-12 lg:p-20 flex flex-col justify-center relative z-20"
+                    >
                         <h2 className="text-xl md:text-3xl font-bold text-white leading-tight">
                             Unleash Your Growth Potential in your industry with our advanced digital systems.
                         </h2>
@@ -19,10 +26,16 @@ export default function Resources() {
                                 scalability, empowering your organization to optimize performance and drive continuous innovation.
                             </p>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Right: Visual Side (Integrated AI Visualization) */}
-                    <div className="flex-1 relative bg-slate-900/40 flex flex-col items-center justify-center overflow-hidden border-t lg:border-t-0 lg:border-l border-slate-800">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="flex-1 relative bg-slate-900/40 flex flex-col items-center justify-center overflow-hidden border-t lg:border-t-0 lg:border-l border-slate-800"
+                    >
                         {/* Background Depth */}
                         <div className="absolute inset-0 bg-radial-gradient from-sky-500/5 via-transparent to-transparent pointer-events-none" />
 
@@ -32,7 +45,7 @@ export default function Resources() {
 
                         {/* Subtle code-like grid overlay */}
                         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]" />
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 

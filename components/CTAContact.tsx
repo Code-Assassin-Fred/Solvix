@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function CTAContact() {
     const [result, setResult] = useState("");
@@ -29,6 +30,21 @@ export default function CTAContact() {
         }
     };
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 }
+    };
+
     return (
         <section id="contact" className="relative py-24 overflow-hidden bg-white">
             {/* Split Background Layer */}
@@ -40,13 +56,31 @@ export default function CTAContact() {
             <div className="relative z-10 mx-auto max-w-7xl flex flex-col lg:flex-row min-h-[700px]">
 
                 {/* Left Column: Follett Inspired */}
-                <div className="lg:w-[40%] bg-[#0a1628] text-white p-12 lg:p-20 flex flex-col justify-center rounded-r-[4rem] lg:rounded-r-[6rem] relative z-10">
+                <motion.div
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="lg:w-[40%] bg-[#0a1628] text-white p-12 lg:p-20 flex flex-col justify-center rounded-r-[4rem] lg:rounded-r-[6rem] relative z-10"
+                >
                     <div className="space-y-12">
                         {/* Custom Geometric Graphic placeholder */}
                         <div className="flex space-x-2">
-                            <div className="w-12 h-12 bg-sky-500 rounded-full" />
-                            <div className="w-12 h-12 bg-sky-600 rounded-tr-full" />
-                            <div className="w-12 h-12 bg-sky-400 rotate-45" />
+                            <motion.div
+                                animate={{ y: [0, -10, 0] }}
+                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                                className="w-12 h-12 bg-sky-500 rounded-full"
+                            />
+                            <motion.div
+                                animate={{ rotate: [0, 90, 0] }}
+                                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                                className="w-12 h-12 bg-sky-600 rounded-tr-full"
+                            />
+                            <motion.div
+                                animate={{ scale: [1, 1.1, 1] }}
+                                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                                className="w-12 h-12 bg-sky-400 rotate-45"
+                            />
                         </div>
 
                         <div>
@@ -72,16 +106,30 @@ export default function CTAContact() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
                 {/* Right Column: Light Form Section */}
                 <div className="flex-1 p-12 lg:p-20 flex flex-col justify-center">
                     <div className="max-w-2xl">
-                        <h2 className="text-4xl font-bold text-[#0f2a4a] mb-8">Get In Touch</h2>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="text-4xl font-bold text-[#0f2a4a] mb-8"
+                        >
+                            Get In Touch
+                        </motion.h2>
 
-                        <form onSubmit={onSubmit} className="space-y-8">
+                        <motion.form
+                            variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            onSubmit={onSubmit}
+                            className="space-y-8"
+                        >
                             <div className="space-y-6">
-                                <div className="space-y-2">
+                                <motion.div variants={itemVariants} className="space-y-2">
                                     <label className="text-base font-bold text-[#0f2a4a]">Name *</label>
                                     <input
                                         type="text"
@@ -90,9 +138,9 @@ export default function CTAContact() {
                                         placeholder="Enter full name"
                                         className="w-full px-4 py-3 bg-white border border-slate-200 rounded-md text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-sky-500 transition-all shadow-sm"
                                     />
-                                </div>
+                                </motion.div>
 
-                                <div className="space-y-2">
+                                <motion.div variants={itemVariants} className="space-y-2">
                                     <label className="text-base font-bold text-[#0f2a4a]">Email *</label>
                                     <input
                                         type="email"
@@ -101,9 +149,9 @@ export default function CTAContact() {
                                         placeholder="Enter email address"
                                         className="w-full px-4 py-3 bg-white border border-slate-200 rounded-md text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-sky-500 transition-all shadow-sm"
                                     />
-                                </div>
+                                </motion.div>
 
-                                <div className="space-y-2">
+                                <motion.div variants={itemVariants} className="space-y-2">
                                     <label className="text-base font-bold text-[#0f2a4a]">Work Phone Number (Optional)</label>
                                     <input
                                         type="tel"
@@ -111,9 +159,9 @@ export default function CTAContact() {
                                         placeholder="Enter phone number"
                                         className="w-full px-4 py-3 bg-white border border-slate-200 rounded-md text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-sky-500 transition-all shadow-sm"
                                     />
-                                </div>
+                                </motion.div>
 
-                                <div className="space-y-2">
+                                <motion.div variants={itemVariants} className="space-y-2">
                                     <label className="text-base font-bold text-[#0f2a4a]">Organization (Optional)</label>
                                     <input
                                         type="text"
@@ -121,9 +169,9 @@ export default function CTAContact() {
                                         placeholder="Enter organization name"
                                         className="w-full px-4 py-3 bg-white border border-slate-200 rounded-md text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-sky-500 transition-all shadow-sm"
                                     />
-                                </div>
+                                </motion.div>
 
-                                <div className="space-y-2">
+                                <motion.div variants={itemVariants} className="space-y-2">
                                     <label className="text-base font-bold text-[#0f2a4a]">Message</label>
                                     <textarea
                                         name="message"
@@ -131,16 +179,18 @@ export default function CTAContact() {
                                         placeholder="Enter your answer"
                                         className="w-full px-4 py-3 bg-white border border-slate-200 rounded-md text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-sky-500 transition-all shadow-sm resize-none"
                                     ></textarea>
-                                </div>
+                                </motion.div>
                             </div>
 
-                            <div className="flex items-center space-x-6">
+                            <motion.div variants={itemVariants} className="flex items-center space-x-6">
                                 <button
                                     type="submit"
                                     disabled={result === "Sending...."}
-                                    className="px-12 py-4 bg-[#FBDB6B] text-[#0a1628] font-extrabold rounded-full hover:bg-[#f3cc4a] transition-all active:scale-95 shadow-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="px-12 py-4 bg-[#FBDB6B] text-[#0a1628] font-extrabold rounded-full hover:bg-[#f3cc4a] transition-all active:scale-95 shadow-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed group"
                                 >
-                                    {result === "Sending...." ? "Submitting..." : "Submit"}
+                                    <span className="group-hover:tracking-wider transition-all duration-300">
+                                        {result === "Sending...." ? "Submitting..." : "Submit"}
+                                    </span>
                                 </button>
 
                                 {result === "Submitted" && (
@@ -154,8 +204,8 @@ export default function CTAContact() {
                                         {result}
                                     </span>
                                 )}
-                            </div>
-                        </form>
+                            </motion.div>
+                        </motion.form>
                     </div>
                 </div>
 
