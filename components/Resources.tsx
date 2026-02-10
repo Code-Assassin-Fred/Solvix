@@ -4,7 +4,7 @@ import AIVisualization from "./AIVisualization";
 
 export default function Resources() {
     return (
-        <section className="py-24 bg-white">
+        <section className="py-16 bg-white">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row bg-[#0a1628] rounded-[2.5rem] overflow-hidden shadow-2xl min-h-[650px]">
                     {/* Left: Content Side */}

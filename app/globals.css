@@ -12,6 +12,19 @@
   --font-mono: var(--font-geist-mono);
 
   --animate-ken-burns: ken-burns 15s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes ken-burns {
