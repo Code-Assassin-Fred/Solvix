@@ -1,183 +1,315 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+    LayoutDashboard,
+    Brain,
+    Network,
+    ShieldCheck,
+    BarChart3,
+    Activity,
+    Cpu,
+    Bell,
+    Settings,
+    ChevronRight,
+    Circle
+} from "lucide-react";
 
-function ChartBar() {
-    const [height, setHeight] = useState("50%");
+const sidebarItems = [
+    { icon: LayoutDashboard, label: "Operations Hub" },
+    { icon: Brain, label: "Human Capital" },
+    { icon: Network, label: "Inventory Control" },
+    { icon: ShieldCheck, label: "Compliance Portal" },
+    { icon: BarChart3, label: "Strategy & BI" },
+];
 
-    useEffect(() => {
-        setHeight(`${Math.random() * 80 + 10}%`);
-    }, []);
+const activityLogs = [
+    { text: "KRA iTax Sync completed successfully", time: "2 min ago", status: "success" },
+    { text: "Payroll processing for February finished", time: "5 min ago", status: "success" },
+    { text: "Fleet Tracking: Vehicle KCD reached Nakuru", time: "12 min ago", status: "success" },
+];
 
-    return <div className="flex-1 bg-sky-500/20 rounded-t" style={{ height }}></div>;
+function LiveIndicator() {
+    return (
+        <div className="flex items-center space-x-2">
+            <motion.div
+                animate={{ opacity: [1, 0.4, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"
+            />
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Live System</span>
+        </div>
+    );
 }
 
 export default function DashboardShowcase() {
+    const [stats, setStats] = useState({ agents: 1248, sync: 99.8, load: 42.5 });
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setStats(prev => ({
+                agents: prev.agents + (Math.random() > 0.5 ? 1 : -1),
+                sync: Number((99.7 + Math.random() * 0.3).toFixed(1)),
+                load: Number((42.1 + Math.random() * 0.8).toFixed(1))
+            }));
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <section className="pt-12 pb-32 bg-slate-50 overflow-hidden">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="text-center mb-8">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
+                >
                     <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#0a1628]">
-                        Powerful tools that simplify <br /> the complex work of software engineering.
+                        Powerful platforms that simplify <br /> the complex work of digital transformation.
                     </h2>
-                </div>
+                </motion.div>
 
                 {/* Laptop Mockup Container */}
                 <div className="relative mx-auto max-w-5xl">
-                    {/* Screen Shadow */}
                     <div className="absolute inset-x-0 -bottom-10 mx-auto h-24 w-[90%] bg-slate-900/10 blur-3xl rounded-[100%]"></div>
 
                     {/* Laptop Body */}
-                    <div className="relative z-10 bg-slate-800 rounded-t-2xl p-4 md:p-6 shadow-2xl border-x-4 border-t-4 border-slate-700">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        className="relative z-10 bg-slate-800 rounded-t-2xl p-4 md:p-5 shadow-2xl border-x-4 border-t-4 border-slate-700"
+                    >
                         {/* Fake Dashboard UI */}
-                        <div className="bg-white rounded-lg overflow-hidden h-[400px] md:h-[500px] shadow-inner flex border border-slate-200">
+                        <div className="bg-[#fcfdfd] rounded-lg overflow-hidden h-[400px] md:h-[520px] shadow-inner flex border border-slate-200">
+
                             {/* Dashboard Sidebar */}
-                            <div className="w-16 md:w-48 bg-slate-50 border-r border-slate-200 p-4 space-y-4 hidden md:block">
-                                <div className="h-6 w-3/4 bg-slate-200 rounded"></div>
-                                <div className="space-y-2">
-                                    <div className="h-4 w-full bg-slate-100 rounded"></div>
-                                    <div className="h-4 w-full bg-slate-100 rounded"></div>
-                                    <div className="h-4 w-5/6 bg-slate-100 rounded"></div>
+                            <div className="w-16 md:w-52 bg-[#0a1628] border-r border-slate-200 p-4 space-y-8 hidden md:flex flex-col">
+                                <div className="px-2">
+                                    <div className="text-sky-400 font-extrabold text-lg tracking-tight">DASHBOARD</div>
+                                </div>
+
+                                <nav className="space-y-1">
+                                    {sidebarItems.map((item, i) => (
+                                        <div key={i} className={`flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-colors group cursor-pointer ${i === 0 ? 'bg-sky-500/10 text-sky-400' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}>
+                                            <item.icon className="w-4 h-4" />
+                                            <span className="text-sm font-medium">{item.label}</span>
+                                        </div>
+                                    ))}
+                                </nav>
+
+                                <div className="mt-auto px-3 py-4 bg-white/5 rounded-xl border border-white/10">
+                                    <div className="flex items-center space-x-2 mb-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                                        <span className="text-[10px] font-bold text-white uppercase tracking-wider">Node Status</span>
+                                    </div>
+                                    <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                                        <motion.div
+                                            animate={{ width: ["80%", "95%", "85%"] }}
+                                            transition={{ duration: 4, repeat: Infinity }}
+                                            className="h-full bg-sky-400"
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
                             {/* Dashboard Main Content */}
-                            <div className="flex-1 p-6 space-y-8 overflow-hidden">
-                                <div className="flex justify-between items-center">
-                                    <div className="h-8 w-48 bg-slate-100 rounded"></div>
-                                    <div className="flex space-x-2">
-                                        <div className="h-8 w-24 bg-sky-100 rounded"></div>
-                                        <div className="h-8 w-8 bg-slate-100 rounded-full"></div>
+                            <div className="flex-1 flex flex-col min-w-0">
+                                {/* Top Bar */}
+                                <header className="h-14 border-b border-slate-100 bg-white/80 backdrop-blur-md px-6 flex items-center justify-between z-20">
+                                    <div className="flex items-center space-x-4">
+                                        <h3 className="text-sm font-bold text-slate-800">Enterprise Operations Portal</h3>
+                                        <LiveIndicator />
                                     </div>
-                                </div>
-
-                                {/* Stats Grid */}
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                    {[1, 2, 3, 4].map(i => (
-                                        <div key={i} className="h-24 bg-white border border-slate-100 rounded-xl p-4 shadow-sm flex flex-col justify-between">
-                                            <div className="h-3 w-1/2 bg-slate-100 rounded"></div>
-                                            <div className="h-6 w-3/4 bg-slate-200 rounded"></div>
+                                    <div className="flex items-center space-x-3">
+                                        <div className="relative">
+                                            <Bell className="w-4 h-4 text-slate-400" />
+                                            <span className="absolute -top-1 -right-1 w-2 h-2 bg-rose-500 rounded-full border border-white"></span>
                                         </div>
-                                    ))}
-                                </div>
+                                        <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 overflow-hidden bg-gradient-to-tr from-sky-400 to-indigo-500"></div>
+                                    </div>
+                                </header>
 
-                                {/* Main Chart Area */}
-                                <div className="h-64 bg-slate-50 rounded-2xl border border-slate-100 p-6 relative overflow-hidden">
-                                    <div className="absolute bottom-0 left-0 w-full h-1/2 bg-sky-500/10 animate-pulse"></div>
-                                    <div className="h-4 w-1/4 bg-slate-200 rounded mb-4"></div>
-                                    <div className="w-full h-full flex items-end space-x-1">
-                                        {[...Array(20)].map((_, i) => (
-                                            <ChartBar key={i} />
+                                <div className="flex-1 p-6 space-y-6 overflow-y-auto custom-scrollbar">
+                                    {/* Stats Grid */}
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                        {[
+                                            { label: "Active Assets", value: stats.agents.toLocaleString(), icon: Cpu, color: 'text-sky-500' },
+                                            { label: "Process Sync", value: `${stats.sync}%`, icon: Brain, color: 'text-indigo-500' },
+                                            { label: "Daily Volume", value: `${stats.load} M`, icon: Activity, color: 'text-amber-500' },
+                                            { label: "Reliability", value: "99.99%", icon: ShieldCheck, color: 'text-emerald-500' },
+                                        ].map((stat, i) => (
+                                            <motion.div
+                                                key={i}
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ delay: i * 0.1 }}
+                                                className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm group hover:border-sky-200 transition-colors"
+                                            >
+                                                <div className="flex justify-between items-start mb-2">
+                                                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{stat.label}</span>
+                                                    <stat.icon className={`w-3 h-3 ${stat.color}`} />
+                                                </div>
+                                                <div className="text-lg font-black text-slate-800 tabular-nums">{stat.value}</div>
+                                            </motion.div>
                                         ))}
                                     </div>
-                                </div>
 
-                                {/* Notifications/Actions */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div className="space-y-4">
-                                        <div className="h-4 w-1/3 bg-slate-200 rounded"></div>
-                                        {[1, 2].map(i => (
-                                            <div key={i} className="flex items-center space-x-4 p-3 bg-white border border-slate-100 rounded-lg">
-                                                <div className="h-10 w-10 bg-amber-100 rounded-full"></div>
-                                                <div className="flex-1 space-y-2">
-                                                    <div className="h-3 w-3/4 bg-slate-100 rounded"></div>
-                                                    <div className="h-2 w-1/2 bg-slate-50 rounded"></div>
+                                    {/* Main Content Areas */}
+                                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                        {/* Chart Section */}
+                                        <div className="lg:col-span-2 bg-white border border-slate-100 rounded-2xl p-6 shadow-sm overflow-hidden relative">
+                                            <div className="flex items-center justify-between mb-6">
+                                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Enterprise Transaction Flow</h4>
+                                                <div className="flex space-x-1">
+                                                    {[1, 2, 3].map(j => <Circle key={j} className="w-1.5 h-1.5 text-slate-200 fill-slate-200" />)}
                                                 </div>
                                             </div>
-                                        ))}
-                                    </div>
-                                    <div className="space-y-4">
-                                        <div className="h-4 w-1/3 bg-slate-200 rounded"></div>
-                                        <div className="h-32 bg-slate-50 rounded-xl border border-dashed border-slate-300 flex items-center justify-center p-4">
-                                            <div className="h-8 w-32 bg-white rounded-lg border border-slate-200 shadow-sm"></div>
+                                            <div className="h-44 w-full flex items-end space-x-1 px-2 relative">
+                                                {/* Scanline Effect */}
+                                                <motion.div
+                                                    animate={{ left: ["-10%", "110%"] }}
+                                                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                                                    className="absolute inset-y-0 w-24 bg-gradient-to-r from-transparent via-sky-400/10 to-transparent z-10"
+                                                />
+                                                {[...Array(24)].map((_, i) => (
+                                                    <motion.div
+                                                        key={i}
+                                                        initial={{ height: "10%" }}
+                                                        animate={{ height: [`${20 + Math.random() * 60}%`, `${30 + Math.random() * 50}%`] }}
+                                                        transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse', delay: i * 0.05 }}
+                                                        className="flex-1 bg-gradient-to-t from-sky-400 to-indigo-500 rounded-t-sm min-w-[4px]"
+                                                    />
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Activity Log */}
+                                        <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+                                            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Operations Log</h4>
+                                            <div className="space-y-4">
+                                                {activityLogs.map((log, i) => (
+                                                    <div key={i} className="flex items-start space-x-3 group">
+                                                        <div className={`mt-1 w-1.5 h-1.5 rounded-full shrink-0 ${log.status === 'success' ? 'bg-emerald-400' : 'bg-amber-400'}`} />
+                                                        <div className="min-w-0">
+                                                            <p className="text-[11px] font-medium text-slate-700 leading-snug line-clamp-2">{log.text}</p>
+                                                            <span className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">{log.time}</span>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <button className="w-full mt-6 py-2.5 bg-slate-50 hover:bg-slate-100 text-slate-500 text-[10px] font-bold rounded-lg transition-colors flex items-center justify-center space-x-1">
+                                                <span>View Full Logs</span>
+                                                <ChevronRight className="w-3 h-3" />
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Laptop Bottom Plate */}
                     <div className="relative z-0 h-4 bg-slate-700 w-[105%] -ml-[2.5%] rounded-b-xl shadow-xl flex justify-center">
                         <div className="w-32 h-2 bg-slate-900/40 rounded-b-full"></div>
                     </div>
 
-                    {/* Mobile Phone Mockup - Overlapping */}
-                    <div className="absolute -right-4 -bottom-8 md:-right-12 md:-bottom-12 z-20 w-[180px] md:w-[280px] animate-float group">
-                        {/* Phone Container/Shadow */}
+                    {/* Mobile Phone Mockup */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 50, rotate: 5 }}
+                        whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+                        viewport={{ once: true }}
+                        className="absolute -right-4 -bottom-12 md:-right-12 md:-bottom-20 z-20 w-[180px] md:w-[280px]"
+                    >
                         <div className="relative h-[380px] md:h-[580px] bg-slate-900 rounded-[2.5rem] md:rounded-[3.5rem] p-3 md:p-4 shadow-2xl border-4 border-slate-700">
-                            {/* Inner Bezel */}
+                            {/* Bezel */}
                             <div className="absolute inset-0 border-[3px] border-slate-800/50 rounded-[2.5rem] md:rounded-[3.5rem] pointer-events-none"></div>
 
                             {/* Physical Buttons */}
-                            <div className="absolute -left-[6px] top-24 w-1.5 h-12 bg-slate-700 rounded-l-md border-y border-slate-800"></div>
-                            <div className="absolute -left-[6px] top-40 w-1.5 h-12 bg-slate-700 rounded-l-md border-y border-slate-800"></div>
-                            <div className="absolute -right-[6px] top-32 w-1.5 h-20 bg-slate-700 rounded-r-md border-y border-slate-800"></div>
+                            {/* Left Side: Volume Buttons */}
+                            <div className="absolute -left-[6px] top-24 w-[6px] h-10 bg-slate-800 border border-slate-700/50 rounded-l-sm" />
+                            <div className="absolute -left-[6px] top-36 w-[6px] h-10 bg-slate-800 border border-slate-700/50 rounded-l-sm" />
+
+                            {/* Right Side: Power Button */}
+                            <div className="absolute -right-[6px] top-32 w-[6px] h-16 bg-slate-800 border border-slate-700/50 rounded-r-sm" />
 
                             {/* Screen */}
-                            <div className="relative bg-white w-full h-full rounded-[2rem] md:rounded-[2.8rem] overflow-hidden flex flex-col border border-slate-200">
-                                {/* Status Bar / Dynamic Island */}
+                            <div className="relative bg-[#f1f5f9] w-full h-full rounded-[2rem] md:rounded-[2.8rem] overflow-hidden flex flex-col border border-slate-200">
+                                {/* Dynamic Island */}
                                 <div className="h-10 md:h-14 flex items-center justify-center relative">
-                                    <div className="w-20 md:w-28 h-5 md:h-7 bg-black rounded-full mt-2 md:mt-3 flex items-center justify-center">
-                                        <div className="w-1.5 md:w-2 h-1.5 md:h-2 bg-slate-800 rounded-full mr-2"></div>
-                                    </div>
-
-                                    {/* Status Bar Icons */}
-                                    <div className="absolute left-6 top-3 md:top-5 text-[8px] md:text-[10px] font-bold">9:41</div>
-                                    <div className="absolute right-6 top-3 md:top-5 flex space-x-1">
-                                        <div className="w-3 md:w-4 h-1.5 md:h-2 bg-slate-200 rounded-sm"></div>
-                                        <div className="w-3 md:w-3.5 h-1.5 md:h-2 bg-slate-200 rounded-sm"></div>
-                                    </div>
+                                    <motion.div
+                                        animate={{ scale: [1, 1.05, 1] }}
+                                        transition={{ duration: 4, repeat: Infinity }}
+                                        className="w-16 md:w-24 h-5 md:h-7 bg-black rounded-full mt-2 md:mt-3 flex items-center justify-center px-2"
+                                    >
+                                        <div className="flex-1 flex justify-center space-x-1">
+                                            <div className="w-1 h-3 bg-sky-500 rounded-full" />
+                                            <div className="w-1 h-3 bg-sky-500 rounded-full" />
+                                        </div>
+                                    </motion.div>
                                 </div>
 
-                                {/* Mobile Dashboard Content */}
-                                <div className="flex-1 p-4 md:p-6 space-y-4 md:space-y-6 overflow-hidden">
+                                <div className="flex-1 p-4 md:p-6 space-y-6 overflow-hidden">
                                     <div className="flex justify-between items-center">
-                                        <div className="h-6 w-24 bg-slate-100 rounded-full"></div>
-                                        <div className="h-8 w-8 bg-sky-50 rounded-full animate-pulse"></div>
+                                        <div className="text-xs font-black text-slate-800 italic uppercase tracking-tighter">Field Ops Manager</div>
+                                        <Settings className="w-4 h-4 text-slate-400" />
                                     </div>
 
-                                    {/* Mini Stats Grid */}
-                                    <div className="grid grid-cols-2 gap-2 md:gap-3">
-                                        {[1, 2].map(i => (
-                                            <div key={i} className="h-16 md:h-20 bg-slate-50 border border-slate-100 rounded-xl p-2 md:p-3 flex flex-col justify-between">
-                                                <div className="h-1.5 md:h-2 w-1/2 bg-slate-200 rounded"></div>
-                                                <div className="h-4 md:h-5 w-3/4 bg-sky-500/20 rounded"></div>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    {/* Mobile Chart Peak */}
-                                    <div className="h-24 md:h-32 bg-sky-50 rounded-2xl border border-sky-100 p-3 relative overflow-hidden">
-                                        <div className="flex items-end space-x-1 h-full">
-                                            {[...Array(12)].map((_, i) => (
-                                                <div key={i} className="flex-1 bg-sky-400/40 rounded-t" style={{ height: `${20 + (i * 5)}%` }}></div>
-                                            ))}
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div className="bg-white rounded-2xl p-3 shadow-sm border border-slate-100">
+                                            <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Daily Targets</p>
+                                            <div className="text-sm font-black text-emerald-500">+12.5%</div>
+                                        </div>
+                                        <div className="bg-white rounded-2xl p-3 shadow-sm border border-slate-100">
+                                            <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Active Staff</p>
+                                            <div className="text-sm font-black text-slate-800">42/45</div>
                                         </div>
                                     </div>
 
-                                    {/* Task List */}
-                                    <div className="space-y-2 md:space-y-3">
-                                        <div className="h-3 md:h-4 w-1/3 bg-slate-200 rounded"></div>
-                                        {[1, 2, 3].map(i => (
-                                            <div key={i} className="flex items-center space-x-3 p-2 md:p-3 bg-white border border-slate-100 rounded-lg shadow-sm">
-                                                <div className="h-6 w-6 md:h-8 md:w-8 bg-amber-100 rounded-full shrink-0"></div>
-                                                <div className="flex-1 space-y-1 md:space-y-2">
-                                                    <div className="h-2 md:h-2.5 w-3/4 bg-slate-100 rounded"></div>
-                                                    <div className="h-1.5 md:h-2 w-1/2 bg-slate-50 rounded"></div>
+                                    {/* Mini Card */}
+                                    <div className="bg-[#0a1628] rounded-2xl p-4 text-white shadow-lg space-y-3">
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-[10px] uppercase font-bold text-sky-400 tracking-widest">Fleet Connectivity</span>
+                                            <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                                        </div>
+                                        <div className="flex items-end justify-between">
+                                            <div className="text-2xl font-black">99.8%</div>
+                                            <div className="h-8 w-16 flex items-end space-x-0.5">
+                                                {[...Array(6)].map((_, k) => (
+                                                    <div key={k} className="flex-1 bg-sky-500/40 rounded-t-[1px]" style={{ height: `${40 + Math.random() * 60}%` }} />
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Critical Tasks */}
+                                    <div className="space-y-2">
+                                        <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Pending Approvals</h4>
+                                        {[
+                                            { t: "Approve Mombasa Warehouse PO", time: "High Priority" },
+                                            { t: "Quarterly VAT Return Audit", time: "Processing" }
+                                        ].map((task, i) => (
+                                            <div key={i} className="flex items-center space-x-3 p-3 bg-white border border-slate-100 rounded-xl shadow-sm">
+                                                <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center">
+                                                    <Circle className={`w-2.5 h-2.5 ${i === 0 ? 'text-amber-500' : 'text-sky-500'} fill-current`} />
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    <p className="text-[11px] font-bold text-slate-800 truncate">{task.t}</p>
+                                                    <p className="text-[9px] font-medium text-slate-400">{task.time}</p>
                                                 </div>
                                             </div>
                                         ))}
                                     </div>
                                 </div>
 
-                                {/* Home Indicator */}
-                                <div className="h-6 md:h-8 flex justify-center items-end pb-2">
-                                    <div className="w-16 md:w-32 h-1 bg-slate-200 rounded-full"></div>
+                                <div className="h-4 flex justify-center items-end pb-2">
+                                    <div className="w-16 h-1 bg-slate-200 rounded-full"></div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>
