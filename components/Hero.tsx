@@ -46,6 +46,21 @@ export default function Hero() {
         return () => clearTimeout(timeout);
     }, [subIndex, index, reverse]);
 
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        if (href.startsWith("#")) {
+            e.preventDefault();
+            const id = href.substring(1);
+            const element = document.getElementById(id);
+            if (element) {
+                const offsetTop = element.offsetTop - 80; // Adjusted for navbar height
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: "smooth",
+                });
+            }
+        }
+    };
+
     return (
         <div id="home" className="relative w-full bg-[#0a1628] overflow-hidden" style={{ height: "calc(100vh - 96px)" }}>
             {/* Background Image with Cinematic Animation */}
@@ -90,9 +105,13 @@ export default function Hero() {
 
                     {/* CTA Button */}
                     <div className="flex pointer-events-auto">
-                        <button className="bg-[#FBDB6B] hover:bg-[#f5cf4a] text-[#0a1628] font-bold py-4 px-10 rounded-full text-lg md:text-xl transition-all hover:scale-105 active:scale-95 shadow-xl">
+                        <a
+                            href="#contact"
+                            onClick={(e) => handleNavClick(e, "#contact")}
+                            className="bg-[#FBDB6B] hover:bg-[#f5cf4a] text-[#0a1628] font-bold py-4 px-10 rounded-full text-lg md:text-xl transition-all hover:scale-105 active:scale-95 shadow-xl inline-block"
+                        >
                             Get Started
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
