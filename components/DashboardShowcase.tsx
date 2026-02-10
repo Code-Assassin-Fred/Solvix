@@ -148,7 +148,7 @@ export default function DashboardShowcase() {
                                     </div>
                                 </header>
 
-                                <div className="flex-1 p-4 md:p-6 space-y-4 md:space-y-6 overflow-y-auto custom-scrollbar">
+                                <div className="flex-1 p-4 md:p-6 space-y-4 md:space-y-6 overflow-hidden select-none pointer-events-none">
                                     {/* Stats Grid */}
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                                         {[
@@ -272,7 +272,7 @@ export default function DashboardShowcase() {
                                     </motion.div>
                                 </div>
 
-                                <div className="flex-1 p-3 md:p-6 space-y-4 md:space-y-6 overflow-y-auto custom-scrollbar">
+                                <div className="flex-1 p-3 md:p-6 space-y-4 md:space-y-6 overflow-hidden select-none pointer-events-none">
                                     <div className="flex justify-between items-center">
                                         <div className="text-xs font-black text-slate-800 italic uppercase tracking-tighter">Field Ops Manager</div>
                                         <Settings className="w-4 h-4 text-slate-400" />
