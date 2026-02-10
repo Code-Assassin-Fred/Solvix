@@ -24,7 +24,6 @@ export default function Resources() {
                         </div>
                         <div className="mt-12 flex items-center space-x-4">
                             <div className="h-12 w-12 rounded-full border-2 border-[#e15b31] flex items-center justify-center">
-                                <div className="h-4 w-4 bg-[#e15b31] rounded-full animate-ping"></div>
                             </div>
                             <span className="text-white font-bold tracking-widest uppercase text-sm">On-Demand Expertise</span>
                         </div>

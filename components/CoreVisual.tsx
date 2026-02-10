@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 export default function CoreVisual() {
     return (
         <section className="relative pt-16 pb-24 bg-white overflow-hidden">
@@ -15,7 +17,13 @@ export default function CoreVisual() {
             <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20 items-center">
                     {/* Left: Visual Side (Sized Down) */}
-                    <div className="relative flex justify-center lg:justify-start lg:col-span-2">
+                    <motion.div
+                        initial={{ opacity: 0, x: -100 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="relative flex justify-center lg:justify-start lg:col-span-2"
+                    >
                         <div className="relative w-full max-w-md">
                             {/* Main Dark Box */}
                             <div className="relative aspect-square w-full overflow-hidden rounded-[2rem] shadow-2xl flex items-center justify-center group">
@@ -40,15 +48,21 @@ export default function CoreVisual() {
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Right: About Text Side (Paragraph Only) */}
-                    <div className="lg:pl-0 lg:col-span-3">
+                    <motion.div
+                        initial={{ opacity: 0, x: 100 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                        className="lg:pl-0 lg:col-span-3"
+                    >
                         <span className="text-[#e15b31] font-bold uppercase tracking-widest text-sm mb-4 block">About</span>
                         <p className="text-xl md:text-2xl text-slate-600 leading-relaxed max-w-3xl font-medium">
                             We empower modern businesses and organizations to innovate, transform, and scale through intelligent, data-driven technology solutions. Solvix delivers advanced digital systems, AI agents, and automation frameworks that provide a significant productivity boost via AI, optimizing operations and unlocking new value. Our expert guidance and best-in-class solutions help institutions move beyond conventional models, adopt forward-thinking strategies, and compete with confidence in rapidly evolving markets.
                         </p>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 
