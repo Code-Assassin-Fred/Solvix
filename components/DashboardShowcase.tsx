@@ -88,7 +88,7 @@ export default function DashboardShowcase() {
                         className="relative z-10 bg-slate-800 rounded-t-2xl p-4 md:p-5 shadow-2xl border-x-4 border-t-4 border-slate-700"
                     >
                         {/* Fake Dashboard UI */}
-                        <div className="bg-[#fcfdfd] rounded-lg overflow-hidden h-[400px] md:h-[520px] shadow-inner flex border border-slate-200">
+                        <div className="bg-[#fcfdfd] rounded-lg overflow-hidden h-[360px] md:h-[520px] shadow-inner flex border border-slate-200">
 
                             {/* Dashboard Sidebar */}
                             <div className="w-16 md:w-52 bg-[#0a1628] border-r border-slate-200 p-4 space-y-8 hidden md:flex flex-col">
@@ -137,9 +137,9 @@ export default function DashboardShowcase() {
                                     </div>
                                 </header>
 
-                                <div className="flex-1 p-6 space-y-6 overflow-y-auto custom-scrollbar">
+                                <div className="flex-1 p-4 md:p-6 space-y-4 md:space-y-6 overflow-y-auto custom-scrollbar">
                                     {/* Stats Grid */}
-                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                                         {[
                                             { label: "Active Assets", value: stats.agents.toLocaleString(), icon: Cpu, color: 'text-sky-500' },
                                             { label: "Process Sync", value: `${stats.sync}%`, icon: Brain, color: 'text-indigo-500' },
@@ -153,11 +153,11 @@ export default function DashboardShowcase() {
                                                 transition={{ delay: i * 0.1 }}
                                                 className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm group hover:border-sky-200 transition-colors"
                                             >
-                                                <div className="flex justify-between items-start mb-2">
-                                                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{stat.label}</span>
-                                                    <stat.icon className={`w-3 h-3 ${stat.color}`} />
+                                                <div className="flex justify-between items-start mb-1 md:mb-2">
+                                                    <span className="text-[8px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider">{stat.label}</span>
+                                                    <stat.icon className={`w-2.5 h-2.5 md:w-3 md:h-3 ${stat.color}`} />
                                                 </div>
-                                                <div className="text-lg font-black text-slate-800 tabular-nums">{stat.value}</div>
+                                                <div className="text-sm md:text-lg font-black text-slate-800 tabular-nums">{stat.value}</div>
                                             </motion.div>
                                         ))}
                                     </div>
@@ -172,7 +172,7 @@ export default function DashboardShowcase() {
                                                     {[1, 2, 3].map(j => <Circle key={j} className="w-1.5 h-1.5 text-slate-200 fill-slate-200" />)}
                                                 </div>
                                             </div>
-                                            <div className="h-44 w-full flex items-end space-x-1 px-2 relative">
+                                            <div className="h-32 md:h-44 w-full flex items-end space-x-1 px-2 relative">
                                                 {/* Scanline Effect */}
                                                 <motion.div
                                                     animate={{ left: ["-10%", "110%"] }}
@@ -260,32 +260,32 @@ export default function DashboardShowcase() {
                                     </motion.div>
                                 </div>
 
-                                <div className="flex-1 p-4 md:p-6 space-y-6 overflow-hidden">
+                                <div className="flex-1 p-3 md:p-6 space-y-4 md:space-y-6 overflow-y-auto custom-scrollbar">
                                     <div className="flex justify-between items-center">
                                         <div className="text-xs font-black text-slate-800 italic uppercase tracking-tighter">Field Ops Manager</div>
                                         <Settings className="w-4 h-4 text-slate-400" />
                                     </div>
 
-                                    <div className="grid grid-cols-2 gap-3">
-                                        <div className="bg-white rounded-2xl p-3 shadow-sm border border-slate-100">
-                                            <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Daily Targets</p>
-                                            <div className="text-sm font-black text-emerald-500">+12.5%</div>
+                                    <div className="grid grid-cols-2 gap-2 md:gap-3">
+                                        <div className="bg-white rounded-xl md:rounded-2xl p-2 md:p-3 shadow-sm border border-slate-100">
+                                            <p className="text-[8px] md:text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Daily Targets</p>
+                                            <div className="text-xs md:text-sm font-black text-emerald-500">+12.5%</div>
                                         </div>
-                                        <div className="bg-white rounded-2xl p-3 shadow-sm border border-slate-100">
-                                            <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Active Staff</p>
-                                            <div className="text-sm font-black text-slate-800">42/45</div>
+                                        <div className="bg-white rounded-xl md:rounded-2xl p-2 md:p-3 shadow-sm border border-slate-100">
+                                            <p className="text-[8px] md:text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Active Staff</p>
+                                            <div className="text-xs md:text-sm font-black text-slate-800">42/45</div>
                                         </div>
                                     </div>
 
                                     {/* Mini Card */}
-                                    <div className="bg-[#0a1628] rounded-2xl p-4 text-white shadow-lg space-y-3">
+                                    <div className="bg-[#0a1628] rounded-xl md:rounded-2xl p-3 md:p-4 text-white shadow-lg space-y-2 md:space-y-3">
                                         <div className="flex justify-between items-center">
                                             <span className="text-[10px] uppercase font-bold text-sky-400 tracking-widest">Fleet Connectivity</span>
                                             <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
                                         </div>
                                         <div className="flex items-end justify-between">
-                                            <div className="text-2xl font-black">99.8%</div>
-                                            <div className="h-8 w-16 flex items-end space-x-0.5">
+                                            <div className="text-xl md:text-2xl font-black">99.8%</div>
+                                            <div className="h-6 md:h-8 w-12 md:w-16 flex items-end space-x-0.5">
                                                 {[...Array(6)].map((_, k) => (
                                                     <div
                                                         key={k}

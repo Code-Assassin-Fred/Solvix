@@ -1,60 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const industries = [
-    // Left Side
-    {
-        name: "Healthcare",
-        color: "#0078d4",
-        position: { angle: -125, xOffset: -20 }
-    },
-    {
-        name: "Finance",
-        color: "#0078d4",
-        position: { angle: -160, xOffset: -10 }
-    },
-    {
-        name: "Retail",
-        color: "#0078d4",
-        position: { angle: 185, xOffset: 0 }
-    },
-    {
-        name: "Education",
-        color: "#0078d4",
-        position: { angle: 145, xOffset: -10 }
-    },
-    {
-        name: "Manufacturing",
-        color: "#0078d4",
-        position: { angle: 110, xOffset: -20 }
-    },
-    // Right Side
-    {
-        name: "Customer Service",
-        color: "#0078d4",
-        position: { angle: -55, xOffset: 20 }
-    },
-    {
-        name: "Sales & Marketing",
-        color: "#0078d4",
-        position: { angle: -20, xOffset: 10 }
-    },
-    {
-        name: "Business Ops",
-        color: "#0078d4",
-        position: { angle: 10, xOffset: 0 }
-    },
-    {
-        name: "Supply Chain",
-        color: "#0078d4",
-        position: { angle: 40, xOffset: 10 }
-    },
-    {
-        name: "Human Resources",
-        color: "#0078d4",
-        position: { angle: 75, xOffset: 20 }
-    }
+    "Healthcare", "Finance", "Retail", "Education", "Manufacturing",
+    "Customer Service", "Sales & Marketing", "Business Ops", "Supply Chain", "Human Resources"
 ];
 
 export default function AIVisualization() {
@@ -70,7 +21,7 @@ export default function AIVisualization() {
             } else if (width < 1024) {
                 setDimensions({ radius: 160, innerRadius: 70 });
             } else {
-                setDimensions({ radius: 190, innerRadius: 85 });
+                setDimensions({ radius: 195, innerRadius: 85 });
             }
         };
         updateDimensions();
@@ -88,50 +39,58 @@ export default function AIVisualization() {
                 <span className="text-lg font-bold text-[#0f2a4a]">Technologies</span>
             </div>
 
-            {/* Orbital Dashed Rings */}
-            <div className="absolute z-10 w-[180px] h-[180px] md:w-[220px] md:h-[220px] rounded-full border-[1.5px] border-sky-500/20 border-dashed" />
-            <div className="absolute z-0 w-[300px] h-[300px] md:w-[380px] md:h-[380px] rounded-full border border-slate-200/20" />
+            {/* Rotating Orbital Container */}
+            <motion.div
+                className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+            >
+                {/* Orbital Dashed Rings */}
+                <div className="absolute z-10 w-[180px] h-[180px] md:w-[220px] md:h-[220px] rounded-full border-[1.5px] border-sky-500/20 border-dashed" />
+                <div className="absolute z-0 w-[300px] h-[300px] md:w-[380px] md:h-[380px] rounded-full border border-slate-200/20" />
 
-            {/* Geometric Motifs on the middle ring */}
-            {[...Array(8)].map((_, idx) => {
-                const angle = (idx * (360 / 8) - 90) * (Math.PI / 180);
-                const x = Math.cos(angle) * (dimensions.innerRadius);
-                const y = Math.sin(angle) * (dimensions.innerRadius);
+                {/* Geometric Motifs on the middle ring */}
+                {[...Array(8)].map((_, idx) => {
+                    const angle = (idx * (360 / 8) - 90) * (Math.PI / 180);
+                    const x = Math.cos(angle) * (dimensions.innerRadius);
+                    const y = Math.sin(angle) * (dimensions.innerRadius);
 
-                return (
-                    <div
-                        key={idx}
-                        className={`absolute z-20 w-2.5 h-2.5 rounded-sm rotate-45 ${idx % 2 === 0 ? 'bg-emerald-400' : 'bg-sky-400'} shadow-md border border-white/50`}
-                        style={{
-                            transform: `translate(${x}px, ${y}px)`
-                        }}
-                    />
-                );
-            })}
+                    return (
+                        <div
+                            key={idx}
+                            className={`absolute z-20 w-2.5 h-2.5 rounded-sm rotate-45 ${idx % 2 === 0 ? 'bg-emerald-400' : 'bg-sky-400'} shadow-md border border-white/50`}
+                            style={{
+                                transform: `translate(${x}px, ${y}px)`
+                            }}
+                        />
+                    );
+                })}
 
-            {/* Industry Nodes */}
-            {industries.map((item, idx) => {
-                const angle = item.position.angle * (Math.PI / 180);
-                const x = Math.cos(angle) * (dimensions.radius) + item.position.xOffset;
-                const y = Math.sin(angle) * (dimensions.radius);
+                {/* Industry Nodes */}
+                {industries.map((name, idx) => {
+                    const angle = (idx * (360 / industries.length)) * (Math.PI / 180);
+                    const x = Math.cos(angle) * (dimensions.radius);
+                    const y = Math.sin(angle) * (dimensions.radius);
 
-                const isLeft = item.position.angle > 90 || item.position.angle < -90 || item.position.angle === 180 || item.position.angle === 185;
-
-                return (
-                    <div
-                        key={item.name}
-                        className="absolute z-40"
-                        style={{
-                            transform: `translate(${x}px, ${y}px)`
-                        }}
-                    >
-                        <div className={`px-3 py-1.5 rounded-xl text-white text-[10px] md:text-[11px] font-bold shadow-lg whitespace-nowrap`}
-                            style={{ backgroundColor: item.color }}>
-                            {item.name}
+                    return (
+                        <div
+                            key={name}
+                            className="absolute z-40 pointer-events-auto"
+                            style={{
+                                transform: `translate(${x}px, ${y}px)`
+                            }}
+                        >
+                            <motion.div
+                                className={`px-3 py-1.5 rounded-xl text-white text-[10px] md:text-[11px] font-bold shadow-lg whitespace-nowrap bg-[#0078d4]`}
+                                animate={{ rotate: -360 }}
+                                transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+                            >
+                                {name}
+                            </motion.div>
                         </div>
-                    </div>
-                );
-            })}
+                    );
+                })}
+            </motion.div>
         </div>
     );
 }

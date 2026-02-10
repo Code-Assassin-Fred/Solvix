@@ -14,7 +14,7 @@ export default function Resources() {
                         </h2>
                         <div className="mt-8">
                             <p className="text-lg text-slate-300 leading-relaxed max-w-2xl">
-                                At Solvix, we deliver advanced AI agents and automation frameworks designed to transform complex
+                                we deliver advanced AI agents and automation frameworks designed to transform complex
                                 data into actionable value. Our intelligent digital systems provide the foundation for seamless
                                 scalability, empowering your organization to optimize performance and drive continuous innovation.
                             </p>
