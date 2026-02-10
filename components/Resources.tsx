@@ -6,26 +6,18 @@ export default function Resources() {
     return (
         <section className="py-16 bg-white">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="flex flex-col lg:flex-row bg-[#0a1628] rounded-[2.5rem] overflow-hidden shadow-2xl min-h-[650px]">
+                <div className="flex flex-col lg:flex-row bg-[#0a1628] rounded-3xl overflow-hidden shadow-2xl min-h-[500px]">
                     {/* Left: Content Side */}
                     <div className="flex-1 p-12 lg:p-20 flex flex-col justify-center relative z-20">
-                        <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-                            Scale your development resources effortlessly.
+                        <h2 className="text-xl md:text-3xl font-bold text-white leading-tight">
+                            Unleash Your Growth Potential in your industry with our advanced digital systems.
                         </h2>
-                        <div className="mt-8 space-y-6">
-                            <p className="text-lg text-slate-300 leading-relaxed">
-                                Our software development resources provide significant benefits in terms of scalability,
-                                which is crucial for firms looking to adapt and thrive in today’s fast-paced digital market.
+                        <div className="mt-8">
+                            <p className="text-lg text-slate-300 leading-relaxed max-w-2xl">
+                                At Solvix, we deliver advanced AI agents and automation frameworks designed to transform complex
+                                data into actionable value. Our intelligent digital systems provide the foundation for seamless
+                                scalability, empowering your organization to optimize performance and drive continuous innovation.
                             </p>
-                            <p className="text-lg text-slate-300 leading-relaxed">
-                                Companies can scale their development efforts up or down with Solvix based on current needs
-                                and future estimates, eliminating the overhead of hiring and the delays involved with onboarding.
-                            </p>
-                        </div>
-                        <div className="mt-12 flex items-center space-x-4">
-                            <div className="h-12 w-12 rounded-full border-2 border-[#e15b31] flex items-center justify-center">
-                            </div>
-                            <span className="text-white font-bold tracking-widest uppercase text-sm">On-Demand Expertise</span>
                         </div>
                     </div>
 
